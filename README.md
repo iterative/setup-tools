@@ -1,5 +1,5 @@
-# iterative/setup-tools@v1
-The is a composite action intended to get you started as fast as possible.
+# setup-tools v1
+This is a composite action intended to get you started as fast as possible.
 
 It runs:
 - [actions/setup-python](https://github.com/actions/setup-python)
