@@ -1,0 +1,23 @@
+---
+name: Setup Iterative Tools
+description: A helper composite action to setup iterative tools (plz not for production)
+author: Iterative, Inc.
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Warning
+      shell: bash
+      run: echo "::warning title=NOT FOR PRODUCTION::This action is intended for testing, rapid development, or prototyping. Not for production workflows!"
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+    - name: Setup DVC
+      uses: iterative/setup-dvc@v1
+    - name: Setup CML
+      uses: iterative/setup-cml@v1
