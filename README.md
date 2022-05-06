@@ -10,3 +10,15 @@ It runs:
 No version pinning is preformed and so subsequent runs can have different results
 
 Use this action to get started, then narrow down and specifiy your target setup when you are happy with your GitHub Actions workflow
+
+## Usage
+
+```yml
+#...
+    steps:
+      - uses: actions/checkout@v3
+      - uses: iterative/setup-tools@v1
+      - run: dvc ...
+      - run: python train.py
+      - run: cml ...
+```
