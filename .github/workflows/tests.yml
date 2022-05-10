@@ -25,16 +25,20 @@ jobs:
           cml-version: '0.15.1'
       - name: Test
         run: |
-          if [ $(python --version) != "Python 3.10.4" ]; then
+          python_version=$(python --version)
+          if [ "$python_version" != "Python 3.10.4" ]; then
             exit 1
           fi
-          if [ $(node --version) != "v16.15.0" ]; then
+          node_version=$(node --version)
+          if [ "$node_version" != "v16.15.0" ]; then
             exit 1
           fi
-          if [ $(python --version) != "2.10.1" ]; then
+          dvc_version=$(dvc --version)
+          if [ "$dvc_version" != "2.10.1" ]; then
             exit 1
           fi
-          if [ $(python --version) != "0.15.1" ]; then
+          cml_version=$(cml --version)
+          if [ "$cml_version" != "0.15.1" ]; then
             exit 1
           fi
           echo "All Good!"
