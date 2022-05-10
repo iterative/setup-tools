@@ -3,6 +3,24 @@ name: Setup Iterative Tools
 description: A helper composite action to setup iterative tools (plz not for production)
 author: Iterative, Inc.
 
+inputs:
+  python-version:
+    description: Pass a value through to actions/setup-python ("3.x") 
+    default: '3.x'
+    required: false
+  node-version:
+    description: Pass a value through to actions/setup-node ("16.x") 
+    default: '16.x'
+    required: false
+  dvc-version:
+    description: Pass a value through to iterative/setup-dvc ("latest")
+    default: 'latest'
+    required: false
+  cml-version:
+    description: Pass a value through to iterative/setup-cml ("latest")
+    default: 'latest'
+    required: false
+
 runs:
   using: 'composite'
   steps:
@@ -12,12 +30,16 @@ runs:
     - name: Setup Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.x'
+        python-version: ${{ inputs.python-version }}
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
-        node-version: '16.x'
+        node-version: ${{ inputs.node-version }}
     - name: Setup DVC
       uses: iterative/setup-dvc@v1
+      with:
+        version: ${{ inputs.dvc-version }}
     - name: Setup CML
       uses: iterative/setup-cml@v1
+      with:
+        version: ${{ inputs.cml-version }}

@@ -1,0 +1,40 @@
+name: Tests
+on:
+  pull_request:
+  workflow_dispath:
+
+jobs:
+  basic-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+      - run: python --version
+      - run: node --version
+      - run: dvc --version
+      - run: cml --version
+  version-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          python-version: '3.10.4'
+          node-version: '16.15.0'
+          dvc-version: '2.10.1'
+          cml-version: '0.15.1'
+      - name: Test
+        run: |
+          if [ $(python --version) != "Python 3.10.4" ]; then
+            exit 1
+          fi
+          if [ $(node --version) != "v16.15.0" ]; then
+            exit 1
+          fi
+          if [ $(python --version) != "2.10.1" ]; then
+            exit 1
+          fi
+          if [ $(python --version) != "0.15.1" ]; then
+            exit 1
+          fi
+          echo "All Good!"
